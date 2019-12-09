@@ -6,7 +6,7 @@ import {
     JoinTable,
     ManyToMany,
     CreateDateColumn,
-    UpdateDateColumn,
+    UpdateDateColumn
 } from 'typeorm';
 
 import { User } from './User';
@@ -17,7 +17,7 @@ export class Profile {
     @PrimaryGeneratedColumn('increment', {
         name: 'id',
         type: 'int',
-        unsigned: true,
+        unsigned: true
     })
     id: number;
 
@@ -30,10 +30,18 @@ export class Profile {
     @Column({ name: 'state', type: 'smallint', default: 0 })
     state: number;
 
-    @CreateDateColumn({ name: 'created_at', type: 'timestamp without time zone', select: false })
+    @CreateDateColumn({
+        name: 'created_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
     createdAt: Date;
 
-    @UpdateDateColumn({ name: 'updated_at', type: 'timestamp without time zone', select: false })
+    @UpdateDateColumn({
+        name: 'updated_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
     updatedAt: Date;
 
     // Relations
@@ -41,7 +49,7 @@ export class Profile {
     @JoinTable({
         name: 'permission_profile',
         joinColumn: { name: 'profile_id', referencedColumnName: 'id' },
-        inverseJoinColumn: { name: 'permission_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'permission_id', referencedColumnName: 'id' }
     })
     public permissions!: Permission[];
 

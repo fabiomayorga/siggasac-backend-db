@@ -13,7 +13,7 @@ export class DatabaseProvider {
      * @param nameConnection Nombre de la conexión (se configura en el archivo ormconfig.js).
      */
     public static async getConnection(
-        nameConnection: string = 'default',
+        nameConnection: string = 'default'
     ): Promise<Connection> {
         try {
             const connectionManager = getConnectionManager();

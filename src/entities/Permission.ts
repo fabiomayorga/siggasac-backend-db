@@ -4,7 +4,7 @@ import {
     Column,
     OneToMany,
     ManyToMany,
-    JoinTable,
+    JoinTable
 } from 'typeorm';
 
 import { Profile } from './Profile';
@@ -14,7 +14,7 @@ export class Permission {
     @PrimaryGeneratedColumn('increment', {
         name: 'id',
         type: 'integer',
-        unsigned: true,
+        unsigned: true
     })
     id: number;
 
@@ -29,7 +29,7 @@ export class Permission {
     @JoinTable({
         name: 'permission_profile',
         joinColumn: { name: 'permission_id', referencedColumnName: 'id' },
-        inverseJoinColumn: { name: 'profile_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'profile_id', referencedColumnName: 'id' }
     })
     public profiles!: Profile[];
 }

@@ -8,7 +8,7 @@ import {
     PrimaryColumn,
     UpdateDateColumn,
     JoinColumn,
-    ManyToOne,
+    ManyToOne
 } from 'typeorm';
 
 import { compareSync, genSaltSync, hashSync } from 'bcrypt';
@@ -36,7 +36,7 @@ export class User {
         name: 'password',
         type: 'varchar',
         nullable: true,
-        select: false,
+        select: false
     })
     password: string;
 
@@ -49,10 +49,18 @@ export class User {
     @Column({ name: 'profile_id', type: 'int', width: 11, unsigned: true })
     profileId: number;
 
-    @CreateDateColumn({ name: 'created_at', type: 'timestamp without time zone', select: false })
+    @CreateDateColumn({
+        name: 'created_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
     createdAt: Date;
 
-    @UpdateDateColumn({ name: 'updated_at', type: 'timestamp without time zone', select: false })
+    @UpdateDateColumn({
+        name: 'updated_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
     updatedAt: Date;
 
     @BeforeInsert()
@@ -68,7 +76,7 @@ export class User {
     // Relations
     @ManyToOne(type => Profile, profile => profile.users, {
         nullable: false,
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
     })
     @JoinColumn({ name: 'profile_id', referencedColumnName: 'id' })
     public profile!: Profile;
