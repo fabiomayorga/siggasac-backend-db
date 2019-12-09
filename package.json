@@ -1,0 +1,33 @@
+{
+    "name": "sigasac-db",
+    "version": "1.0.0",
+    "description": "Siga Sac Database module.",
+    "main": "dist/index.js",
+    "typings": "src/index.d.ts",
+    "scripts": {
+        "build": "npm run clean && tsc",
+        "clean": "rimraf dist",
+        "entity:create": "typeorm entity:create -d src/entities -n",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "lint": "tslint -p tsconfig.json -c tslint.json --fix",
+        "migrate": "npm run build && typeorm migration:run -c",
+        "migrate:generate": "typeorm migration:generate -c default -n",
+        "migrate:revert": "typeorm migration:revert -c",
+        "start": "tsc && node dist/test.js"
+    },
+    "dependencies": {
+        "bcrypt": "^3.0.6",
+        "pg": "^7.14.0",
+        "reflect-metadata": "^0.1.10",
+        "typeorm": "0.2.18"
+    },
+    "devDependencies": {
+        "@types/bcrypt": "^3.0.0",
+        "@types/node": "^8.0.29",
+        "prettier": "^1.18.2",
+        "rimraf": "^2.6.3",
+        "ts-node": "^8.3.0",
+        "tslint": "^5.18.0",
+        "typescript": "^3.5.3"
+    }
+}

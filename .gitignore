@@ -1,0 +1,15 @@
+.idea/
+.vscode/
+node_modules/
+dist/
+tmp/
+temp/
+
+# package-lock.json
+package-lock.json
+
+# file test database connections
+src/test.ts
+
+# ormconfig
+ormconfig.js
