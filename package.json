@@ -13,7 +13,7 @@
         "migrate": "npm run build && typeorm migration:run -c",
         "migrate:generate": "typeorm migration:generate -c default -n",
         "migrate:revert": "typeorm migration:revert -c",
-        "start": "tsc && node dist/test.js"
+        "start": "tsc && ts-node src/test.ts"
     },
     "dependencies": {
         "bcrypt": "^3.0.6",
