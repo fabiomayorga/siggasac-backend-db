@@ -5,17 +5,19 @@ import {
     BeforeUpdate,
     Entity,
     Index,
-    PrimaryColumn,
-    UpdateDateColumn,
     JoinColumn,
-    ManyToOne
+    ManyToOne,
+    PrimaryColumn,
+    UpdateDateColumn
 } from 'typeorm';
 
 import { compareSync, genSaltSync, hashSync } from 'bcrypt';
+
 import { Profile } from './Profile';
+import { School } from './School';
 
 @Entity({ name: 'users' })
-@Index(['email'], { unique: true })
+@Index(['email', 'schoolId'], { unique: true })
 export class User {
     @Column({ name: 'id', type: 'integer', width: 11, default: 0 })
     id: number;
@@ -26,18 +28,13 @@ export class User {
     @Column({ name: 'surname', type: 'varchar', nullable: true })
     surname: string;
 
-    @PrimaryColumn({ name: 'email', type: 'varchar', unique: true })
+    @PrimaryColumn({ name: 'email', type: 'varchar' })
     email: string;
 
-    @PrimaryColumn({ name: 'state', type: 'smallint', width: 1, default: 1 })
-    state: number;
+    @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
+    state: boolean;
 
-    @Column({
-        name: 'password',
-        type: 'varchar',
-        nullable: true,
-        select: false
-    })
+    @Column({ name: 'password', type: 'varchar', select: false })
     password: string;
 
     @Column({ name: 'phone', type: 'varchar', nullable: true })
@@ -46,7 +43,15 @@ export class User {
     @Column({ name: 'image_path', type: 'varchar', nullable: true })
     imagePath: string;
 
-    @Column({ name: 'profile_id', type: 'int', width: 11, unsigned: true })
+    @PrimaryColumn({
+        name: 'school_id',
+        type: 'integer',
+        width: 11,
+        unsigned: true
+    })
+    schoolId: number;
+
+    @Column({ name: 'profile_id', type: 'integer', width: 11, unsigned: true })
     profileId: number;
 
     @CreateDateColumn({
@@ -73,11 +78,20 @@ export class User {
         return compareSync(password, encodedPassword);
     }
 
-    // Relations
+    // Relationships
     @ManyToOne(type => Profile, profile => profile.users, {
         nullable: false,
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
     })
     @JoinColumn({ name: 'profile_id', referencedColumnName: 'id' })
     public profile!: Profile;
+
+    @ManyToOne(type => Profile, profile => profile.users, {
+        nullable: false,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+    })
+    @JoinColumn({ name: 'school_id', referencedColumnName: 'id' })
+    public school!: School;
 }

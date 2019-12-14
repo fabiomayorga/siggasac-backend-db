@@ -24,7 +24,7 @@ export class Permission {
     @Column({ name: 'description', type: 'varchar' })
     description: string;
 
-    // Relations
+    // Relationships
     @ManyToMany(type => Profile)
     @JoinTable({
         name: 'permission_profile',

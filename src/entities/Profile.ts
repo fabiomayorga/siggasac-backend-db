@@ -9,8 +9,8 @@ import {
     UpdateDateColumn
 } from 'typeorm';
 
-import { User } from './User';
 import { Permission } from './Permission';
+import { User } from './User';
 
 @Entity({ name: 'profiles' })
 export class Profile {
@@ -44,7 +44,7 @@ export class Profile {
     })
     updatedAt: Date;
 
-    // Relations
+    // Relationships
     @ManyToMany(type => Permission, permission => permission.profiles)
     @JoinTable({
         name: 'permission_profile',
