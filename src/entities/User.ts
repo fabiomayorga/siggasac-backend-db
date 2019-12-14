@@ -87,7 +87,7 @@ export class User {
     @JoinColumn({ name: 'profile_id', referencedColumnName: 'id' })
     public profile!: Profile;
 
-    @ManyToOne(type => Profile, profile => profile.users, {
+    @ManyToOne(type => School, school => school.users, {
         nullable: false,
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
