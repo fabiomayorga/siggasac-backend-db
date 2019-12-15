@@ -40,7 +40,7 @@ export class School {
     imagePath: string;
 
     @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
-    state: boolean;
+    state: number;
 
     @Column({ name: 'city_id', type: 'integer', width: 11, unsigned: true })
     cityId: number;
