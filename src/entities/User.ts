@@ -39,7 +39,7 @@ export class User {
     @Column({ name: 'document_number', type: 'varchar', unique: true })
     documentNumber: string;
 
-    @Column({ name: 'type_identification_id', type: 'varchar', unique: true })
+    @Column({ name: 'document_type_id', type: 'varchar' })
     documentTypeId: number;
 
     @Column({ name: 'password', type: 'varchar', select: false })

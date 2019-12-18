@@ -4,7 +4,6 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
-    PrimaryColumn,
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from 'typeorm';
@@ -15,7 +14,14 @@ import { Profile } from './Profile';
 
 @Entity({ name: 'menu_permission_profile' })
 export class MenuPermissionProfile {
-    @PrimaryColumn({
+    @PrimaryGeneratedColumn('increment', {
+        name: 'id',
+        type: 'integer',
+        unsigned: true
+    })
+    id: number;
+
+    @Column({
         name: 'profile_id',
         type: 'integer',
         width: 11,
@@ -23,7 +29,7 @@ export class MenuPermissionProfile {
     })
     profileId!: number;
 
-    @PrimaryColumn({
+    @Column({
         name: 'menu_id',
         type: 'integer',
         width: 11,
@@ -31,7 +37,7 @@ export class MenuPermissionProfile {
     })
     menuId!: number;
 
-    @PrimaryColumn({
+    @Column({
         name: 'permission_id',
         type: 'integer',
         width: 11,

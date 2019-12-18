@@ -4,7 +4,7 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
-    PrimaryColumn,
+    PrimaryGeneratedColumn,
     UpdateDateColumn
 } from 'typeorm';
 
@@ -14,16 +14,24 @@ import { User } from './User';
 
 @Entity({ name: 'school_profile_user' })
 export class SchoolProfileUser {
+    @PrimaryGeneratedColumn('increment', {
+        name: 'id',
+        type: 'integer',
+        unsigned: true
+    })
+    id: number;
+
     @Column({
         name: 'school_id',
         type: 'integer',
         width: 11,
         unsigned: true,
-        nullable: true
+        nullable: true,
+        default: 0
     })
     schoolId!: number;
 
-    @PrimaryColumn({
+    @Column({
         name: 'profile_id',
         type: 'integer',
         width: 11,
@@ -31,7 +39,7 @@ export class SchoolProfileUser {
     })
     profileId!: number;
 
-    @PrimaryColumn({
+    @Column({
         name: 'user_id',
         type: 'integer',
         width: 11,

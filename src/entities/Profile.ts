@@ -27,7 +27,7 @@ export class Profile {
     @Column({ name: 'description', type: 'varchar' })
     description: string;
 
-    @Column({ name: 'state', type: 'smallint', default: 0 })
+    @Column({ name: 'state', type: 'smallint', default: 1 })
     state: number;
 
     @CreateDateColumn({
