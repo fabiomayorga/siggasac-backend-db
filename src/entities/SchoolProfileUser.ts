@@ -27,7 +27,7 @@ export class SchoolProfileUser {
         width: 11,
         unsigned: true,
         nullable: true,
-        default: 0
+        default: null
     })
     schoolId!: number;
 
