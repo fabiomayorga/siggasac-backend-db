@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { ThirdParty } from './ThirdParty';
+import { User } from './User';
 
 @Entity({ name: 'types_documents' })
 export class DocumentType {
@@ -19,4 +20,7 @@ export class DocumentType {
     // relationships
     @OneToMany(type => ThirdParty, thirdParty => thirdParty.documentType)
     public thirdParties: ThirdParty[];
+
+    @OneToMany(type => User, user => user.documentType)
+    public users: User[];
 }

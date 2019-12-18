@@ -9,14 +9,14 @@ import {
     UpdateDateColumn
 } from 'typeorm';
 
-import { Permission } from './Permission';
-import { User } from './User';
+import { MenuPermissionProfile } from './MenuPermissionProfile';
+import { SchoolProfileUser } from './SchoolProfileUser';
 
 @Entity({ name: 'profiles' })
 export class Profile {
     @PrimaryGeneratedColumn('increment', {
         name: 'id',
-        type: 'int',
+        type: 'integer',
         unsigned: true
     })
     id: number;
@@ -44,15 +44,16 @@ export class Profile {
     })
     updatedAt: Date;
 
-    // Relationships
-    @ManyToMany(type => Permission, permission => permission.profiles)
-    @JoinTable({
-        name: 'permission_profile',
-        joinColumn: { name: 'profile_id', referencedColumnName: 'id' },
-        inverseJoinColumn: { name: 'permission_id', referencedColumnName: 'id' }
-    })
-    public permissions!: Permission[];
+    // relationships
+    @OneToMany(
+        type => MenuPermissionProfile,
+        menuPermissionProfile => menuPermissionProfile.profile
+    )
+    public menuPermissionProfile!: MenuPermissionProfile[];
 
-    @OneToMany(type => User, user => user.profile)
-    public users: User[];
+    @OneToMany(
+        type => SchoolProfileUser,
+        schoolProfileUser => schoolProfileUser.profile
+    )
+    public schoolProfileUser!: SchoolProfileUser[];
 }

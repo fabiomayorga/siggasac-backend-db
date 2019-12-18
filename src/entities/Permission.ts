@@ -7,7 +7,7 @@ import {
     JoinTable
 } from 'typeorm';
 
-import { Profile } from './Profile';
+import { MenuPermissionProfile } from './MenuPermissionProfile';
 
 @Entity({ name: 'permissions' })
 export class Permission {
@@ -24,12 +24,10 @@ export class Permission {
     @Column({ name: 'description', type: 'varchar' })
     description: string;
 
-    // Relationships
-    @ManyToMany(type => Profile)
-    @JoinTable({
-        name: 'permission_profile',
-        joinColumn: { name: 'permission_id', referencedColumnName: 'id' },
-        inverseJoinColumn: { name: 'profile_id', referencedColumnName: 'id' }
-    })
-    public profiles!: Profile[];
+    // relationships
+    @OneToMany(
+        type => MenuPermissionProfile,
+        menuPermissionProfile => menuPermissionProfile.permission
+    )
+    public menuPermissionProfile!: MenuPermissionProfile[];
 }

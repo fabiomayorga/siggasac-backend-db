@@ -8,18 +8,23 @@ import {
     JoinColumn,
     ManyToOne,
     PrimaryColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    PrimaryGeneratedColumn,
+    OneToMany
 } from 'typeorm';
 
 import { compareSync, genSaltSync, hashSync } from 'bcrypt';
 
-import { Profile } from './Profile';
-import { School } from './School';
+import { DocumentType } from './DocumentType';
+import { SchoolProfileUser } from './SchoolProfileUser';
 
 @Entity({ name: 'users' })
-@Index(['email', 'schoolId'], { unique: true })
 export class User {
-    @Column({ name: 'id', type: 'integer', width: 11, default: 0 })
+    @PrimaryGeneratedColumn('increment', {
+        name: 'id',
+        type: 'integer',
+        unsigned: true
+    })
     id: number;
 
     @Column({ name: 'name', type: 'varchar', nullable: true })
@@ -28,11 +33,14 @@ export class User {
     @Column({ name: 'surname', type: 'varchar', nullable: true })
     surname: string;
 
-    @PrimaryColumn({ name: 'email', type: 'varchar' })
+    @Column({ name: 'email', type: 'varchar', unique: true })
     email: string;
 
-    @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
-    state: boolean;
+    @Column({ name: 'document_number', type: 'varchar', unique: true })
+    documentNumber: string;
+
+    @Column({ name: 'type_identification_id', type: 'varchar', unique: true })
+    documentTypeId: number;
 
     @Column({ name: 'password', type: 'varchar', select: false })
     password: string;
@@ -40,19 +48,14 @@ export class User {
     @Column({ name: 'phone', type: 'varchar', nullable: true })
     phone: string;
 
+    @Column({ name: 'cellphone', type: 'varchar', nullable: true })
+    cellphone: string;
+
     @Column({ name: 'image_path', type: 'varchar', nullable: true })
     imagePath: string;
 
-    @PrimaryColumn({
-        name: 'school_id',
-        type: 'integer',
-        width: 11,
-        unsigned: true
-    })
-    schoolId: number;
-
-    @Column({ name: 'profile_id', type: 'integer', width: 11, unsigned: true })
-    profileId: number;
+    @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
+    state: number;
 
     @CreateDateColumn({
         name: 'created_at',
@@ -78,20 +81,17 @@ export class User {
         return compareSync(password, encodedPassword);
     }
 
-    // Relationships
-    @ManyToOne(type => Profile, profile => profile.users, {
-        nullable: false,
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-    })
-    @JoinColumn({ name: 'profile_id', referencedColumnName: 'id' })
-    public profile!: Profile;
+    // relationships
+    @ManyToOne(
+        type => DocumentType,
+        typeIdentification => typeIdentification.users
+    )
+    @JoinColumn({ name: 'document_type_id', referencedColumnName: 'id' })
+    public documentType!: DocumentType;
 
-    @ManyToOne(type => School, school => school.users, {
-        nullable: false,
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-    })
-    @JoinColumn({ name: 'school_id', referencedColumnName: 'id' })
-    public school!: School;
+    @OneToMany(
+        type => SchoolProfileUser,
+        schoolProfileUser => schoolProfileUser.user
+    )
+    public schoolProfileUser!: SchoolProfileUser[];
 }

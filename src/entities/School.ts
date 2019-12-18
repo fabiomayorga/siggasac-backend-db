@@ -7,6 +7,8 @@ import {
     UpdateDateColumn
 } from 'typeorm';
 
+import { MenuPermissionProfile } from './MenuPermissionProfile';
+import { SchoolProfileUser } from './SchoolProfileUser';
 import { User } from './User';
 
 @Entity({ name: 'schools' })
@@ -78,6 +80,9 @@ export class School {
     updatedAt: Date;
 
     // Relationships
-    @OneToMany(type => User, user => user.school)
-    public users: User[];
+    @OneToMany(
+        type => SchoolProfileUser,
+        schoolProfileUser => schoolProfileUser.school
+    )
+    public schoolProfileUser!: SchoolProfileUser[];
 }
