@@ -12,6 +12,8 @@ import {
 } from 'typeorm';
 
 import { MenuPermissionProfile } from './MenuPermissionProfile';
+import { Profile } from './Profile';
+import { Permission } from './Permission';
 
 @Entity({ name: 'menus' })
 export class Menu {
@@ -61,4 +63,21 @@ export class Menu {
     @ManyToOne(type => Menu, menu => menu.menus)
     @JoinColumn({ name: 'father', referencedColumnName: 'id' })
     menu!: Menu;
+
+    // comentar para generar migracion
+    @ManyToMany(type => Permission, permissions => permissions.menus)
+    @JoinTable({
+        name: 'menu_permission_profile',
+        joinColumn: { referencedColumnName: 'id', name: 'menu_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'permission_id' }
+    })
+    permissions!: Permission[];
+
+    @ManyToMany(type => Profile, profile => profile.menus)
+    @JoinTable({
+        name: 'menu_permission_profile',
+        joinColumn: { referencedColumnName: 'id', name: 'menu_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'profile_id' }
+    })
+    profiles!: Profile[];
 }

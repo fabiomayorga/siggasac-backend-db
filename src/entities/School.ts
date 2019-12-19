@@ -4,7 +4,9 @@ import {
     CreateDateColumn,
     PrimaryGeneratedColumn,
     OneToMany,
-    UpdateDateColumn
+    UpdateDateColumn,
+    ManyToMany,
+    JoinTable
 } from 'typeorm';
 
 import { MenuPermissionProfile } from './MenuPermissionProfile';
@@ -85,4 +87,13 @@ export class School {
         schoolProfileUser => schoolProfileUser.school
     )
     public schoolProfileUser!: SchoolProfileUser[];
+
+    // comentar para generar migracion
+    @ManyToMany(type => User, school => school.schools)
+    @JoinTable({
+        name: 'school_profile_user',
+        joinColumn: { referencedColumnName: 'id', name: 'school_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'user_id' }
+    })
+    users!: User[];
 }

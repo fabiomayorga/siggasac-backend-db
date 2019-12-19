@@ -10,12 +10,16 @@ import {
     PrimaryColumn,
     UpdateDateColumn,
     PrimaryGeneratedColumn,
-    OneToMany
+    OneToMany,
+    ManyToMany,
+    JoinTable
 } from 'typeorm';
 
 import { compareSync, genSaltSync, hashSync } from 'bcrypt';
 
 import { DocumentType } from './DocumentType';
+import { Profile } from './Profile';
+import { School } from './School';
 import { SchoolProfileUser } from './SchoolProfileUser';
 
 @Entity({ name: 'users' })
@@ -94,4 +98,21 @@ export class User {
         schoolProfileUser => schoolProfileUser.user
     )
     public schoolProfileUser!: SchoolProfileUser[];
+
+    // comentar para generar migracion
+    @ManyToMany(type => School, school => school.users)
+    @JoinTable({
+        name: 'school_profile_user',
+        joinColumn: { referencedColumnName: 'id', name: 'user_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'school_id' }
+    })
+    schools!: School[];
+
+    @ManyToMany(type => Profile, profile => profile.users)
+    @JoinTable({
+        name: 'school_profile_user',
+        joinColumn: { referencedColumnName: 'id', name: 'user_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'profile_id' }
+    })
+    profiles!: Profile[];
 }

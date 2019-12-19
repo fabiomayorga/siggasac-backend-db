@@ -11,6 +11,8 @@ import {
 
 import { MenuPermissionProfile } from './MenuPermissionProfile';
 import { SchoolProfileUser } from './SchoolProfileUser';
+import { User } from './User';
+import { Menu } from './Menu';
 
 @Entity({ name: 'profiles' })
 export class Profile {
@@ -56,4 +58,21 @@ export class Profile {
         schoolProfileUser => schoolProfileUser.profile
     )
     public schoolProfileUser!: SchoolProfileUser[];
+
+    // comentar para generar migracion
+    @ManyToMany(type => Menu, menu => menu.profiles)
+    @JoinTable({
+        name: 'menu_permission_profile',
+        joinColumn: { referencedColumnName: 'id', name: 'profile_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'menu_id' }
+    })
+    menus!: Menu[];
+
+    @ManyToMany(type => User, user => user.profiles)
+    @JoinTable({
+        name: 'school_profile_user',
+        joinColumn: { referencedColumnName: 'id', name: 'profile_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'user_id' }
+    })
+    users!: User[];
 }
