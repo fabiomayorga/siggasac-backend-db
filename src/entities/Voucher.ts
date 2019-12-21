@@ -19,5 +19,5 @@ export class Voucher {
     code: string;
 
     @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
-    state: boolean;
+    state: number;
 }
