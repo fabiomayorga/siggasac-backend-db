@@ -1,9 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    OneToMany
+} from 'typeorm';
 
 import { ThirdPartyAccounts } from './ThirdPartyAccounts';
 
-@Entity({ name: 'banks' })
-export class Bank {
+@Entity({ name: 'accounts_types' })
+export class AccountType {
     @PrimaryGeneratedColumn('increment', {
         name: 'id',
         type: 'integer',
@@ -11,16 +16,10 @@ export class Bank {
     })
     id: number;
 
-    @Column({ name: 'name', type: 'varchar' })
+    @Column({ name: 'name', type: 'varchar', nullable: true })
     name: string;
 
-    @Column({ name: 'code', type: 'varchar', nullable: true })
-    code: string;
-
-    @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
-    state: number;
-
-    // relationships
+    // relations
     @OneToMany(
         type => ThirdPartyAccounts,
         schoolProfileUser => schoolProfileUser.accountType
