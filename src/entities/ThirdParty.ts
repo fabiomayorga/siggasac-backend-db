@@ -55,8 +55,68 @@ export class ThirdParty {
     @Column({ name: 'document_number', type: 'varchar', nullable: true })
     documentNumber: string;
 
-    @Column({ name: 'document_type_id', type: 'integer' })
-    documentTypeId: number;
+    @Column({ name: 'public_entity', type: 'varchar', nullable: true })
+    publicEntity: string;
+
+    @Column({ name: 'vat_regime', type: 'varchar', nullable: true })
+    vatRegime: string;
+
+    @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
+    state: number;
+
+    @Column({
+        name: 'declare_income',
+        type: 'smallint',
+        width: 1,
+        nullable: true,
+        default: 0
+    })
+    declareIncome: number;
+
+    @Column({
+        name: 'is_withholding_agent',
+        type: 'smallint',
+        width: 1,
+        nullable: true,
+        default: 0
+    })
+    isWithholdingAgent: number;
+
+    @Column({
+        name: 'is_great_contributor',
+        type: 'smallint',
+        width: 1,
+        nullable: true,
+        default: 0
+    })
+    isGreatContributor: number;
+
+    @Column({
+        name: 'is_self_retainer',
+        type: 'smallint',
+        width: 1,
+        nullable: true,
+        default: 0
+    })
+    isSelfRetainer: number;
+
+    @Column({
+        name: 'vat_invoice',
+        type: 'smallint',
+        width: 1,
+        nullable: true,
+        default: 0
+    })
+    vatInvoice: number;
+
+    @Column({
+        name: 'retention_effect',
+        type: 'smallint',
+        width: 1,
+        nullable: true,
+        default: 0
+    })
+    retentionEffect: number;
 
     @Column({ name: 'type_person_id', type: 'integer', nullable: true })
     typePersonId: number;
@@ -64,7 +124,7 @@ export class ThirdParty {
     @Column({ name: 'third_party_type_id', type: 'integer', nullable: true })
     thirdPartyTypeId: number;
 
-    // Relationships
+    // relationships
     @ManyToOne(
         type => DocumentType,
         documentType => documentType.thirdParties,
@@ -81,9 +141,13 @@ export class ThirdParty {
     @JoinColumn({ name: 'third_party_type_id', referencedColumnName: 'id' })
     public thirdPartyType!: ThirdPartyType;
 
-    @ManyToOne(type => TypePerson, typePerson => typePerson.thirdParties, {
-        nullable: true
-    })
+    @ManyToOne(
+        type => TypePerson,
+        typePerson => typePerson.thirdParties,
+        {
+            nullable: true
+        }
+    )
     @JoinColumn({ name: 'type_person_id', referencedColumnName: 'id' })
     public typePerson!: TypePerson;
 }
