@@ -29,8 +29,8 @@ export class ThirdPartyAccounts {
 
     // relationships
     @ManyToOne(
-        type => AccountType,
-        accountType => accountType.thirdPartyAccounts
+        type => Bank,
+        bank => bank.thirdPartyAccounts
     )
     @JoinColumn({ name: 'bank_id', referencedColumnName: 'id' })
     public bank!: Bank;
