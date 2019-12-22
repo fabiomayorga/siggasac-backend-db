@@ -33,7 +33,10 @@ export class Permission {
     public menuPermissionProfile!: MenuPermissionProfile[];
 
     // comentar para generar migracion
-    @ManyToMany(type => Menu, menu => menu.permissions)
+    @ManyToMany(
+        type => Menu,
+        menu => menu.permissions
+    )
     @JoinTable({
         name: 'menu_permission_profile',
         joinColumn: { referencedColumnName: 'id', name: 'permission_id' },

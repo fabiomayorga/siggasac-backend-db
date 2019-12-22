@@ -60,7 +60,10 @@ export class Profile {
     public schoolProfileUser!: SchoolProfileUser[];
 
     // comentar para generar migracion
-    @ManyToMany(type => Menu, menu => menu.profiles)
+    @ManyToMany(
+        type => Menu,
+        menu => menu.profiles
+    )
     @JoinTable({
         name: 'menu_permission_profile',
         joinColumn: { referencedColumnName: 'id', name: 'profile_id' },
@@ -68,7 +71,10 @@ export class Profile {
     })
     menus!: Menu[];
 
-    @ManyToMany(type => User, user => user.profiles)
+    @ManyToMany(
+        type => User,
+        user => user.profiles
+    )
     @JoinTable({
         name: 'school_profile_user',
         joinColumn: { referencedColumnName: 'id', name: 'profile_id' },

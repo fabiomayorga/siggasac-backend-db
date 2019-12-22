@@ -100,7 +100,10 @@ export class User {
     public schoolProfileUser!: SchoolProfileUser[];
 
     // comentar para generar migracion
-    @ManyToMany(type => School, school => school.users)
+    @ManyToMany(
+        type => School,
+        school => school.users
+    )
     @JoinTable({
         name: 'school_profile_user',
         joinColumn: { referencedColumnName: 'id', name: 'user_id' },
@@ -108,7 +111,10 @@ export class User {
     })
     schools!: School[];
 
-    @ManyToMany(type => Profile, profile => profile.users)
+    @ManyToMany(
+        type => Profile,
+        profile => profile.users
+    )
     @JoinTable({
         name: 'school_profile_user',
         joinColumn: { referencedColumnName: 'id', name: 'user_id' },

@@ -57,15 +57,25 @@ export class Menu {
     )
     public menuPermissionProfile!: MenuPermissionProfile[];
 
-    @OneToMany(type => Menu, menu => menu.father, { nullable: true })
+    @OneToMany(
+        type => Menu,
+        menu => menu.father,
+        { nullable: true }
+    )
     public menus!: Menu[];
 
-    @ManyToOne(type => Menu, menu => menu.menus)
+    @ManyToOne(
+        type => Menu,
+        menu => menu.menus
+    )
     @JoinColumn({ name: 'father', referencedColumnName: 'id' })
     menu!: Menu;
 
     // comentar para generar migracion
-    @ManyToMany(type => Permission, permissions => permissions.menus)
+    @ManyToMany(
+        type => Permission,
+        permissions => permissions.menus
+    )
     @JoinTable({
         name: 'menu_permission_profile',
         joinColumn: { referencedColumnName: 'id', name: 'menu_id' },
@@ -73,7 +83,10 @@ export class Menu {
     })
     permissions!: Permission[];
 
-    @ManyToMany(type => Profile, profile => profile.menus)
+    @ManyToMany(
+        type => Profile,
+        profile => profile.menus
+    )
     @JoinTable({
         name: 'menu_permission_profile',
         joinColumn: { referencedColumnName: 'id', name: 'menu_id' },

@@ -89,7 +89,10 @@ export class School {
     public schoolProfileUser!: SchoolProfileUser[];
 
     // comentar para generar migracion
-    @ManyToMany(type => User, school => school.schools)
+    @ManyToMany(
+        type => User,
+        school => school.schools
+    )
     @JoinTable({
         name: 'school_profile_user',
         joinColumn: { referencedColumnName: 'id', name: 'school_id' },
