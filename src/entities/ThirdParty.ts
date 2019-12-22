@@ -118,35 +118,33 @@ export class ThirdParty {
     })
     retentionEffect: number;
 
-    @Column({ name: 'type_person_id', type: 'integer', nullable: true })
+    @Column({ name: 'document_type_id', type: 'integer' })
+    documentTypeId: number;
+
+    @Column({ name: 'type_person_id', type: 'integer' })
     typePersonId: number;
 
-    @Column({ name: 'third_party_type_id', type: 'integer', nullable: true })
+    @Column({ name: 'third_party_type_id', type: 'integer' })
     thirdPartyTypeId: number;
 
     // relationships
     @ManyToOne(
         type => DocumentType,
-        documentType => documentType.thirdParties,
-        { nullable: true }
+        documentType => documentType.thirdParties
     )
     @JoinColumn({ name: 'document_type_id', referencedColumnName: 'id' })
     public documentType!: DocumentType;
 
     @ManyToOne(
         type => ThirdPartyType,
-        thirdPartyTypes => thirdPartyTypes.thirdParties,
-        { nullable: true }
+        thirdPartyTypes => thirdPartyTypes.thirdParties
     )
     @JoinColumn({ name: 'third_party_type_id', referencedColumnName: 'id' })
     public thirdPartyType!: ThirdPartyType;
 
     @ManyToOne(
         type => PeopleType,
-        typePerson => typePerson.thirdParties,
-        {
-            nullable: true
-        }
+        typePerson => typePerson.thirdParties
     )
     @JoinColumn({ name: 'type_person_id', referencedColumnName: 'id' })
     public typePerson!: PeopleType;
