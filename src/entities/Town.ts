@@ -4,10 +4,12 @@ import {
     JoinColumn,
     ManyToOne,
     PrimaryColumn,
-    PrimaryGeneratedColumn
+    PrimaryGeneratedColumn,
+    OneToMany
 } from 'typeorm';
 
 import { Department } from './Department';
+import { School } from './School';
 
 @Entity({ name: 'towns' })
 export class Town {
@@ -37,4 +39,10 @@ export class Town {
     )
     @JoinColumn({ name: 'department_code', referencedColumnName: 'code' })
     public department!: Department;
+
+    @OneToMany(
+        type => School,
+        school => school.city
+    )
+    schools!: School[];
 }

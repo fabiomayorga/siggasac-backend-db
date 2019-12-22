@@ -6,12 +6,16 @@ import {
     OneToMany,
     UpdateDateColumn,
     ManyToMany,
-    JoinTable
+    JoinTable,
+    ManyToOne,
+    JoinColumn
 } from 'typeorm';
 
 import { MenuPermissionProfile } from './MenuPermissionProfile';
 import { SchoolProfileUser } from './SchoolProfileUser';
 import { User } from './User';
+import { Town } from './Town';
+import { Department } from './Department';
 
 @Entity({ name: 'schools' })
 export class School {
@@ -87,6 +91,16 @@ export class School {
         schoolProfileUser => schoolProfileUser.school
     )
     public schoolProfileUser!: SchoolProfileUser[];
+
+    @ManyToOne(
+        type => Town,
+        town => town.schools,
+        {
+            nullable: false
+        }
+    )
+    @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
+    city: Town;
 
     // comentar para generar migracion
     @ManyToMany(
