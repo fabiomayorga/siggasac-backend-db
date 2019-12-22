@@ -18,9 +18,15 @@ export class DocumentType {
     description: string;
 
     // relationships
-    @OneToMany(type => ThirdParty, thirdParty => thirdParty.documentType)
+    @OneToMany(
+        type => ThirdParty,
+        thirdParty => thirdParty.documentType
+    )
     public thirdParties: ThirdParty[];
 
-    @OneToMany(type => User, user => user.documentType)
+    @OneToMany(
+        type => User,
+        user => user.documentType
+    )
     public users: User[];
 }

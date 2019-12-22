@@ -11,6 +11,9 @@ export class Country {
     name: string;
 
     // relationships
-    @OneToMany(type => Department, department => department.country)
+    @OneToMany(
+        type => Department,
+        department => department.country
+    )
     public departments!: Department[];
 }

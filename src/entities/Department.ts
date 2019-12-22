@@ -22,12 +22,19 @@ export class Department {
     countryCode: number;
 
     // relationships
-    @ManyToOne(type => Country, country => country.departments, {
-        nullable: false
-    })
+    @ManyToOne(
+        type => Country,
+        country => country.departments,
+        {
+            nullable: false
+        }
+    )
     @JoinColumn({ name: 'country_code', referencedColumnName: 'code' })
     public country!: Country;
 
-    @OneToMany(type => Town, town => town.department)
+    @OneToMany(
+        type => Town,
+        town => town.department
+    )
     public towns!: Town[];
 }

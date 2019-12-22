@@ -28,9 +28,13 @@ export class Town {
     departmentCode: number;
 
     // relationships
-    @ManyToOne(type => Department, department => department.towns, {
-        nullable: false
-    })
+    @ManyToOne(
+        type => Department,
+        department => department.towns,
+        {
+            nullable: false
+        }
+    )
     @JoinColumn({ name: 'department_code', referencedColumnName: 'code' })
     public department!: Department;
 }

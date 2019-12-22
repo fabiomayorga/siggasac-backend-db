@@ -13,6 +13,9 @@ export class TypePerson {
     @Column({ name: 'description', type: 'varchar' })
     description: string;
 
-    @OneToMany(type => ThirdParty, thirdParty => thirdParty.typePerson)
+    @OneToMany(
+        type => ThirdParty,
+        thirdParty => thirdParty.typePerson
+    )
     public thirdParties: ThirdParty[];
 }

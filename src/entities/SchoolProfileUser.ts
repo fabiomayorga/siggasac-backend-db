@@ -65,17 +65,27 @@ export class SchoolProfileUser {
     updatedAt: Date;
 
     // relationships
-    @ManyToOne(type => School, school => school.schoolProfileUser, {
-        nullable: true
-    })
+    @ManyToOne(
+        type => School,
+        school => school.schoolProfileUser,
+        {
+            nullable: true
+        }
+    )
     @JoinColumn({ name: 'school_id', referencedColumnName: 'id' })
     public school!: School;
 
-    @ManyToOne(type => Profile, profile => profile.schoolProfileUser)
+    @ManyToOne(
+        type => Profile,
+        profile => profile.schoolProfileUser
+    )
     @JoinColumn({ name: 'profile_id', referencedColumnName: 'id' })
     public profile!: Profile;
 
-    @ManyToOne(type => User, user => user.schoolProfileUser)
+    @ManyToOne(
+        type => User,
+        user => user.schoolProfileUser
+    )
     @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
     public user!: User;
 }

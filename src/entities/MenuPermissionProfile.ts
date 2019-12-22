@@ -63,11 +63,17 @@ export class MenuPermissionProfile {
     updatedAt: Date;
 
     // relationships
-    @ManyToOne(type => Profile, profile => profile.menuPermissionProfile)
+    @ManyToOne(
+        type => Profile,
+        profile => profile.menuPermissionProfile
+    )
     @JoinColumn({ name: 'profile_id', referencedColumnName: 'id' })
     public profile!: Profile;
 
-    @ManyToOne(type => Menu, menu => menu.menuPermissionProfile)
+    @ManyToOne(
+        type => Menu,
+        menu => menu.menuPermissionProfile
+    )
     @JoinColumn({ name: 'menu_id', referencedColumnName: 'id' })
     public menu!: Menu;
 

@@ -18,6 +18,9 @@ export class ThirdPartyType {
     state: boolean;
 
     // relationships
-    @OneToMany(type => ThirdParty, thirdParty => thirdParty.thirdPartyType)
+    @OneToMany(
+        type => ThirdParty,
+        thirdParty => thirdParty.thirdPartyType
+    )
     public thirdParties: ThirdParty[];
 }
