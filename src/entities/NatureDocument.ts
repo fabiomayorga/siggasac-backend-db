@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'campus' })
-export class Campus {
+@Entity({ name: 'nature_document' })
+export class NatureDocument {
     @PrimaryGeneratedColumn('increment', {
         name: 'id',
         type: 'integer',
@@ -9,9 +9,9 @@ export class Campus {
     })
     id: number;
 
-    @Column({ name: 'code', type: 'varchar' })
-    code: string;
-
     @Column({ name: 'name', type: 'varchar' })
     name: string;
+
+    @Column({ name: 'description', type: 'varchar' })
+    description: string;
 }
