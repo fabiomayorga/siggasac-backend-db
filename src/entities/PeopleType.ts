@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { ThirdParty } from './ThirdParty';
 
-@Entity({ name: 'types_people' })
-export class TypePerson {
+@Entity({ name: 'people_types' })
+export class PeopleType {
     @PrimaryGeneratedColumn('increment', {
         name: 'id',
         type: 'integer',

@@ -6,9 +6,9 @@ import {
     JoinColumn
 } from 'typeorm';
 
-import { ThirdPartyType } from './ThirdPartyType';
 import { DocumentType } from './DocumentType';
-import { TypePerson } from './TypePerson';
+import { ThirdPartyType } from './ThirdPartyType';
+import { PeopleType } from './PeopleType';
 
 @Entity({ name: 'third_parties' })
 export class ThirdParty {
@@ -142,12 +142,12 @@ export class ThirdParty {
     public thirdPartyType!: ThirdPartyType;
 
     @ManyToOne(
-        type => TypePerson,
+        type => PeopleType,
         typePerson => typePerson.thirdParties,
         {
             nullable: true
         }
     )
     @JoinColumn({ name: 'type_person_id', referencedColumnName: 'id' })
-    public typePerson!: TypePerson;
+    public typePerson!: PeopleType;
 }

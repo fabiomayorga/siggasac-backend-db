@@ -14,6 +14,6 @@ export { SchoolProfileUser } from './entities/SchoolProfileUser';
 export { ThirdParty } from './entities/ThirdParty';
 export { ThirdPartyType } from './entities/ThirdPartyType';
 export { Town } from './entities/Town';
-export { TypePerson } from './entities/TypePerson';
+export { PeopleType } from './entities/PeopleType';
 export { User } from './entities/User';
 export { Voucher } from './entities/Voucher';

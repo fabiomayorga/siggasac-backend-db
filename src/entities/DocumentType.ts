@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { ThirdParty } from './ThirdParty';
 import { User } from './User';
 
-@Entity({ name: 'types_documents' })
+@Entity({ name: 'documents_types' })
 export class DocumentType {
     @PrimaryGeneratedColumn('increment', {
         name: 'id',
