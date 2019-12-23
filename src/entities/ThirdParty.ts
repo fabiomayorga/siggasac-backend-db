@@ -9,6 +9,7 @@ import {
 import { DocumentType } from './DocumentType';
 import { ThirdPartyType } from './ThirdPartyType';
 import { PeopleType } from './PeopleType';
+import { School } from './School';
 
 @Entity({ name: 'third_parties' })
 export class ThirdParty {
@@ -127,6 +128,9 @@ export class ThirdParty {
     @Column({ name: 'third_party_type_id', type: 'integer' })
     thirdPartyTypeId: number;
 
+    @Column({ name: 'school_id', type: 'integer' })
+    schoolId: number;
+
     // relationships
     @ManyToOne(
         type => DocumentType,
@@ -134,6 +138,13 @@ export class ThirdParty {
     )
     @JoinColumn({ name: 'document_type_id', referencedColumnName: 'id' })
     public documentType!: DocumentType;
+
+    @ManyToOne(
+        type => School,
+        school => school.campus
+    )
+    @JoinColumn({ name: 'school_id', referencedColumnName: 'id' })
+    school!: School;
 
     @ManyToOne(
         type => ThirdPartyType,

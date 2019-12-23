@@ -15,9 +15,9 @@ import { MenuPermissionProfile } from './MenuPermissionProfile';
 import { SchoolProfileUser } from './SchoolProfileUser';
 import { User } from './User';
 import { Town } from './Town';
-import { Department } from './Department';
 import { Campus } from './Campus';
 import { Project } from './Project';
+import { ThirdParty } from './ThirdParty';
 
 @Entity({ name: 'schools' })
 export class School {
@@ -52,7 +52,7 @@ export class School {
     @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
     state: number;
 
-    @Column({ name: 'city_id', type: 'integer', width: 11, unsigned: true })
+    @Column({ name: 'town_id', type: 'integer' })
     cityId: number;
 
     @Column({
@@ -87,31 +87,38 @@ export class School {
     })
     updatedAt: Date;
 
-    // Relationships
+    // relationships
     @OneToMany(
         type => Campus,
         campus => campus.school
     )
-    campus!: Campus[];
+    public campus!: Campus[];
 
     @ManyToOne(
         type => Town,
-        town => town.schools
+        town => town.schools,
+        { nullable: true }
     )
-    @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
-    city!: Town;
+    @JoinColumn({ name: 'town_id', referencedColumnName: 'id' })
+    public town!: Town;
 
     @OneToMany(
         type => Project,
         project => project.school
     )
-    projects!: Project[];
+    public projects!: Project[];
 
     @OneToMany(
         type => SchoolProfileUser,
         schoolProfileUser => schoolProfileUser.school
     )
-    schoolProfileUser!: SchoolProfileUser[];
+    public schoolProfileUser!: SchoolProfileUser[];
+
+    @OneToMany(
+        type => ThirdParty,
+        thirdParties => thirdParties.school
+    )
+    public thirdParties!: ThirdParty[];
 
     // comentar para generar migracion
     @ManyToMany(

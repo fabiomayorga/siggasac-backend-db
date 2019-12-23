@@ -25,7 +25,7 @@ export class ThirdPartyAccounts {
     accountTypeId: number;
 
     @Column({ name: 'account_number', type: 'integer' })
-    accountNumber: string;
+    accountNumber: number;
 
     // relationships
     @ManyToOne(

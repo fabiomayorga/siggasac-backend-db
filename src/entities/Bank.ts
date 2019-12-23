@@ -23,7 +23,7 @@ export class Bank {
     // relationships
     @OneToMany(
         type => ThirdPartyAccounts,
-        schoolProfileUser => schoolProfileUser.accountType
+        schoolProfileUser => schoolProfileUser.bank
     )
     thirdPartyAccounts: ThirdPartyAccounts[];
 }

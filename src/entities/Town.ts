@@ -20,7 +20,7 @@ export class Town {
     })
     id: number;
 
-    @PrimaryColumn({ name: 'code', type: 'integer', width: 11 })
+    @Column({ name: 'code', type: 'integer', width: 11 })
     code: number;
 
     @Column({ name: 'name', type: 'varchar' })
@@ -42,7 +42,7 @@ export class Town {
 
     @OneToMany(
         type => School,
-        school => school.city
+        school => school.town
     )
     schools!: School[];
 }

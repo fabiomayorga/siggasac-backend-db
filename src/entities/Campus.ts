@@ -1,4 +1,10 @@
-import { Entity, Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Entity,
+    Column,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn
+} from 'typeorm';
 import { School } from './School';
 
 @Entity({ name: 'campus' })
@@ -16,8 +22,8 @@ export class Campus {
     @Column({ name: 'name', type: 'varchar' })
     name: string;
 
-    @Column({ name: 'school_id', type: 'varchar' })
-    schoolId: string;
+    @Column({ name: 'school_id', type: 'integer' })
+    schoolId: number;
 
     // relationships
     @ManyToOne(
