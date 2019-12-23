@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { School } from './School';
 
 @Entity({ name: 'campus' })
 export class Campus {
@@ -14,4 +15,15 @@ export class Campus {
 
     @Column({ name: 'name', type: 'varchar' })
     name: string;
+
+    @Column({ name: 'school_id', type: 'varchar' })
+    schoolId: string;
+
+    // relationships
+    @ManyToOne(
+        type => School,
+        school => school.campus
+    )
+    @JoinColumn({ name: 'school_id', referencedColumnName: 'id' })
+    school!: School;
 }

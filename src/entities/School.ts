@@ -16,6 +16,8 @@ import { SchoolProfileUser } from './SchoolProfileUser';
 import { User } from './User';
 import { Town } from './Town';
 import { Department } from './Department';
+import { Campus } from './Campus';
+import { Project } from './Project';
 
 @Entity({ name: 'schools' })
 export class School {
@@ -87,20 +89,29 @@ export class School {
 
     // Relationships
     @OneToMany(
-        type => SchoolProfileUser,
-        schoolProfileUser => schoolProfileUser.school
+        type => Campus,
+        campus => campus.school
     )
-    public schoolProfileUser!: SchoolProfileUser[];
+    campus!: Campus[];
 
     @ManyToOne(
         type => Town,
-        town => town.schools,
-        {
-            nullable: false
-        }
+        town => town.schools
     )
     @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
-    city: Town;
+    city!: Town;
+
+    @OneToMany(
+        type => Project,
+        project => project.school
+    )
+    projects!: Project[];
+
+    @OneToMany(
+        type => SchoolProfileUser,
+        schoolProfileUser => schoolProfileUser.school
+    )
+    schoolProfileUser!: SchoolProfileUser[];
 
     // comentar para generar migracion
     @ManyToMany(
