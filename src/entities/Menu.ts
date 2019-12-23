@@ -59,17 +59,17 @@ export class Menu {
 
     @OneToMany(
         type => Menu,
-        menu => menu.father,
+        menu => menu.submenu,
         { nullable: true }
     )
-    public menus!: Menu[];
+    public submenus!: Menu[];
 
     @ManyToOne(
         type => Menu,
-        menu => menu.menus
+        menu => menu.submenus
     )
     @JoinColumn({ name: 'father', referencedColumnName: 'id' })
-    menu!: Menu;
+    submenu!: Menu;
 
     // comentar para generar migracion
     @ManyToMany(
