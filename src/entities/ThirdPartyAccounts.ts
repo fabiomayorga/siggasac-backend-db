@@ -69,6 +69,6 @@ export class ThirdPartyAccounts {
         type => ThirdParty,
         thirdParty => thirdParty.thirdPartyAccounts
     )
-    @JoinColumn({ name: 'account_type_id', referencedColumnName: 'id' })
+    @JoinColumn({ name: 'third_party_id', referencedColumnName: 'id' })
     public thirdParty!: ThirdParty;
 }
