@@ -18,6 +18,7 @@ export { Revenue } from './entities/Revenue';
 export { RevenueType } from './entities/RevenueType';
 export { School } from './entities/School';
 export { SchoolProfileUser } from './entities/SchoolProfileUser';
+export { SingleAccountPlan } from './entities/SingleAccountPlan';
 export { ThirdParty } from './entities/ThirdParty';
 export { ThirdPartyAccounts } from './entities/ThirdPartyAccounts';
 export { ThirdPartyType } from './entities/ThirdPartyType';
