@@ -15,6 +15,7 @@ export { Profile } from './entities/Profile';
 export { Project } from './entities/Project';
 export { Regime } from './entities/Regime';
 export { Revenue } from './entities/Revenue';
+export { RevenueType } from './entities/RevenueType';
 export { School } from './entities/School';
 export { SchoolProfileUser } from './entities/SchoolProfileUser';
 export { ThirdParty } from './entities/ThirdParty';
