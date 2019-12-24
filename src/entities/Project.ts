@@ -1,9 +1,11 @@
 import {
     Entity,
     Column,
+    CreateDateColumn,
     JoinColumn,
     ManyToOne,
-    PrimaryGeneratedColumn
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
 } from 'typeorm';
 import { School } from './School';
 
@@ -22,8 +24,25 @@ export class Project {
     @Column({ name: 'description', type: 'varchar' })
     description: string;
 
+    @Column({ name: 'state', type: 'smallint', default: 1 })
+    state: number;
+
     @Column({ name: 'school_id', type: 'integer' })
     schoolId: number;
+
+    @CreateDateColumn({
+        name: 'created_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    createdAt: Date;
+
+    @UpdateDateColumn({
+        name: 'updated_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    updatedAt: Date;
 
     // relationships
     @ManyToOne(
