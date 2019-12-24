@@ -1,15 +1,19 @@
 import {
     Entity,
     Column,
-    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    JoinColumn,
     ManyToOne,
-    JoinColumn
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
 } from 'typeorm';
 
 import { DocumentType } from './DocumentType';
 import { ThirdPartyType } from './ThirdPartyType';
 import { PeopleType } from './PeopleType';
 import { School } from './School';
+import { ThirdPartyAccounts } from './ThirdPartyAccounts';
 
 @Entity({ name: 'third_parties' })
 export class ThirdParty {
@@ -119,6 +123,20 @@ export class ThirdParty {
     })
     retentionEffect: number;
 
+    @CreateDateColumn({
+        name: 'created_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    createdAt: Date;
+
+    @UpdateDateColumn({
+        name: 'updated_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    updatedAt: Date;
+
     @Column({ name: 'document_type_id', type: 'integer' })
     documentTypeId: number;
 
@@ -159,4 +177,10 @@ export class ThirdParty {
     )
     @JoinColumn({ name: 'type_person_id', referencedColumnName: 'id' })
     public typePerson!: PeopleType;
+
+    @OneToMany(
+        type => ThirdPartyAccounts,
+        thirdPartyAccounts => thirdPartyAccounts.thirdParty
+    )
+    public thirdPartyAccounts!: ThirdPartyAccounts[];
 }

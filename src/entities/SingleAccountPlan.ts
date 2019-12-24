@@ -21,6 +21,9 @@ export class SingleAccountPlan {
     @Column({ name: 'description', type: 'varchar' })
     description: string;
 
+    @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
+    state: number;
+
     @CreateDateColumn({
         name: 'created_at',
         type: 'timestamp without time zone',
