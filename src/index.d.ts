@@ -2,6 +2,7 @@ export { DatabaseProvider } from './DatabaseProvider';
 
 export { AccountType } from './entities/AccountType';
 export { Bank } from './entities/Bank';
+export { BudgetAccount } from './entities/BudgetAccount';
 export { Campus } from './entities/Campus';
 export { Country } from './entities/Country';
 export { Department } from './entities/Department';
