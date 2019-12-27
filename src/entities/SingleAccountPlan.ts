@@ -3,8 +3,10 @@ import {
     Column,
     CreateDateColumn,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    OneToMany
 } from 'typeorm';
+import { SchoolBankAccount } from './SchoolBankAccount';
 
 @Entity({ name: 'single_account_plan' })
 export class SingleAccountPlan {
@@ -37,4 +39,11 @@ export class SingleAccountPlan {
         select: false
     })
     updatedAt: Date;
+
+    // relationships
+    @OneToMany(
+        type => SchoolBankAccount,
+        schoolBankAccount => schoolBankAccount.singleAccountPlan
+    )
+    public schoolBankAccounts!: SchoolBankAccount[];
 }

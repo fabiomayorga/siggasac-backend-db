@@ -18,6 +18,7 @@ import { Town } from './Town';
 import { Campus } from './Campus';
 import { Project } from './Project';
 import { ThirdParty } from './ThirdParty';
+import { SchoolBankAccount } from './SchoolBankAccount';
 
 @Entity({ name: 'schools' })
 export class School {
@@ -107,6 +108,12 @@ export class School {
         project => project.school
     )
     public projects!: Project[];
+
+    @OneToMany(
+        type => SchoolBankAccount,
+        schoolBankAccount => schoolBankAccount.school
+    )
+    public schoolBankAccounts!: SchoolBankAccount[];
 
     @OneToMany(
         type => SchoolProfileUser,

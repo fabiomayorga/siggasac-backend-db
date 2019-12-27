@@ -17,6 +17,7 @@ export { Regime } from './entities/Regime';
 export { Revenue } from './entities/Revenue';
 export { RevenueType } from './entities/RevenueType';
 export { School } from './entities/School';
+export { SchoolBankAccount } from './entities/SchoolBankAccount';
 export { SchoolProfileUser } from './entities/SchoolProfileUser';
 export { SingleAccountPlan } from './entities/SingleAccountPlan';
 export { ThirdParty } from './entities/ThirdParty';

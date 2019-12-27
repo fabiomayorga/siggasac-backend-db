@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 import { ThirdPartyAccounts } from './ThirdPartyAccounts';
+import { SchoolBankAccount } from './SchoolBankAccount';
 
 @Entity({ name: 'accounts_types' })
 export class AccountType {
@@ -15,6 +16,12 @@ export class AccountType {
     name: string;
 
     // relations
+    @OneToMany(
+        type => SchoolBankAccount,
+        schoolBankAccount => schoolBankAccount.accountType
+    )
+    schoolBankAccounts: SchoolBankAccount[];
+
     @OneToMany(
         type => ThirdPartyAccounts,
         schoolProfileUser => schoolProfileUser.accountType
