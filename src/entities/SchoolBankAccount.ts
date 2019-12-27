@@ -1,7 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { School } from "./School";
-import { AccountType } from "./AccountType";
-import { SingleAccountPlan } from "./SingleAccountPlan";
+import {
+    Entity,
+    Column,
+    CreateDateColumn,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from 'typeorm';
+
+import { AccountType } from './AccountType';
+import { School } from './School';
+import { SingleAccountPlan } from './SingleAccountPlan';
 
 @Entity({ name: 'school_bank_accounts' })
 export class SchoolBankAccount {
