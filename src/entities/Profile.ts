@@ -9,10 +9,10 @@ import {
     UpdateDateColumn
 } from 'typeorm';
 
+import { Menu } from './Menu';
 import { MenuPermissionProfile } from './MenuPermissionProfile';
 import { SchoolProfileUser } from './SchoolProfileUser';
 import { User } from './User';
-import { Menu } from './Menu';
 
 @Entity({ name: 'profiles' })
 export class Profile {

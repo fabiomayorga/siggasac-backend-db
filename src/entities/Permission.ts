@@ -7,8 +7,8 @@ import {
     JoinTable
 } from 'typeorm';
 
-import { MenuPermissionProfile } from './MenuPermissionProfile';
 import { Menu } from './Menu';
+import { MenuPermissionProfile } from './MenuPermissionProfile';
 
 @Entity({ name: 'permissions' })
 export class Permission {
