@@ -1,10 +1,12 @@
 import {
     Entity,
     Column,
+    CreateDateColumn,
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
-    OneToMany
+    OneToMany,
+    UpdateDateColumn
 } from 'typeorm';
 
 import { TypeSchoolDocument } from './TypeSchoolDocument';
@@ -34,6 +36,20 @@ export class Voucher {
 
     @Column({ name: 'school_id', type: 'integer' })
     schoolId: number;
+
+    @CreateDateColumn({
+        name: 'created_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    createdAt: Date;
+
+    @UpdateDateColumn({
+        name: 'updated_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    updatedAt: Date;
 
     // relationships
     @ManyToOne(
