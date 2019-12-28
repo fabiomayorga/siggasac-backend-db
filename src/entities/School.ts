@@ -11,14 +11,15 @@ import {
     JoinColumn
 } from 'typeorm';
 
-import { MenuPermissionProfile } from './MenuPermissionProfile';
+import { Campus } from './Campus';
+import { ThirdParty } from './ThirdParty';
+import { Town } from './Town';
+import { Project } from './Project';
+import { SchoolBankAccount } from './SchoolBankAccount';
 import { SchoolProfileUser } from './SchoolProfileUser';
 import { User } from './User';
-import { Town } from './Town';
-import { Campus } from './Campus';
-import { Project } from './Project';
-import { ThirdParty } from './ThirdParty';
-import { SchoolBankAccount } from './SchoolBankAccount';
+import { Voucher } from './Voucher';
+import { MenuPermissionProfile } from './MenuPermissionProfile';
 
 @Entity({ name: 'schools' })
 export class School {
@@ -126,6 +127,18 @@ export class School {
         thirdParties => thirdParties.school
     )
     public thirdParties!: ThirdParty[];
+
+    @OneToMany(
+        type => Voucher,
+        voucher => voucher.school
+    )
+    public vouchers!: Voucher[];
+
+    @OneToMany(
+        type => MenuPermissionProfile,
+        menuPermissionProfile => menuPermissionProfile.menu
+    )
+    public menuPermissionProfile!: MenuPermissionProfile[];
 
     // comentar para generar migracion
     @ManyToMany(

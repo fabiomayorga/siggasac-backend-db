@@ -9,11 +9,11 @@ import {
     UpdateDateColumn
 } from 'typeorm';
 
-import { School } from './School';
+import { NatureDocument } from './NatureDocument';
 import { TypeSchoolDocument } from './TypeSchoolDocument';
 
-@Entity({ name: 'campus' })
-export class Campus {
+@Entity({ name: 'types_administrator_documents' })
+export class TypeAdministratorDocument {
     @PrimaryGeneratedColumn('increment', {
         name: 'id',
         type: 'integer',
@@ -24,14 +24,14 @@ export class Campus {
     @Column({ name: 'code', type: 'varchar' })
     code: string;
 
-    @Column({ name: 'name', type: 'varchar' })
-    name: string;
+    @Column({ name: 'description', type: 'varchar' })
+    description: string;
 
     @Column({ name: 'state', type: 'smallint', default: 1 })
     state: number;
 
-    @Column({ name: 'school_id', type: 'integer' })
-    schoolId: number;
+    @Column({ name: 'nature_document_id', type: 'integer' })
+    natureDocumentId: number;
 
     @CreateDateColumn({
         name: 'created_at',
@@ -49,15 +49,15 @@ export class Campus {
 
     // relationships
     @ManyToOne(
-        type => School,
-        school => school.campus
+        type => NatureDocument,
+        natureDocument => natureDocument.typeAdministratorDocuments
     )
-    @JoinColumn({ name: 'school_id', referencedColumnName: 'id' })
-    school!: School;
+    @JoinColumn({ name: 'nature_document_id', referencedColumnName: 'id' })
+    natureDocument!: NatureDocument;
 
     @OneToMany(
         type => TypeSchoolDocument,
-        typeSchoolDocument => typeSchoolDocument.campus
+        typeSchoolDocument => typeSchoolDocument.typeAdministratorDocument
     )
     typeSchoolDocuments!: TypeSchoolDocument[];
 }

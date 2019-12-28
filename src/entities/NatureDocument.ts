@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+import { TypeAdministratorDocument } from './TypeAdministratorDocument';
 
 @Entity({ name: 'nature_document' })
 export class NatureDocument {
@@ -14,4 +16,11 @@ export class NatureDocument {
 
     @Column({ name: 'description', type: 'varchar' })
     description: string;
+
+    // relationships
+    @OneToMany(
+        type => TypeAdministratorDocument,
+        typeAdministratorDocument => typeAdministratorDocument.natureDocument
+    )
+    public typeAdministratorDocuments!: TypeAdministratorDocument[];
 }
