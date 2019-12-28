@@ -15,8 +15,8 @@ export class BudgetAccount {
     })
     id: number;
 
-    @Column({ name: 'code', type: 'integer' })
-    code: number;
+    @Column({ name: 'code', type: 'varchar' })
+    code: string;
 
     @Column({ name: 'description', type: 'varchar' })
     description: string;
