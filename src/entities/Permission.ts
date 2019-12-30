@@ -25,6 +25,9 @@ export class Permission {
     @Column({ name: 'description', type: 'varchar' })
     description: string;
 
+    @Column({ name: 'state', type: 'smallint', default: 1 })
+    state: number;
+
     // relationships
     @OneToMany(
         type => MenuPermissionProfile,
