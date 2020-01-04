@@ -10,7 +10,8 @@ import {
     PrimaryGeneratedColumn,
     OneToMany,
     ManyToMany,
-    JoinTable
+    JoinTable,
+    OneToOne
 } from 'typeorm';
 
 import { compareSync, genSaltSync, hashSync } from 'bcrypt';
@@ -19,6 +20,7 @@ import { DocumentType } from './DocumentType';
 import { Profile } from './Profile';
 import { School } from './School';
 import { SchoolProfileUser } from './SchoolProfileUser';
+import { UserLog } from './UserLog';
 
 @Entity({ name: 'users' })
 export class User {
@@ -96,6 +98,9 @@ export class User {
         schoolProfileUser => schoolProfileUser.user
     )
     public schoolProfileUser!: SchoolProfileUser[];
+
+    @OneToOne(type => UserLog, userLog => userLog.user)
+    public userLog!: UserLog;
 
     // comentar para generar migracion
     @ManyToMany(
