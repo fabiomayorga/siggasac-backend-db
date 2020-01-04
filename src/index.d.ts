@@ -27,5 +27,6 @@ export { ThirdPartyType } from './entities/ThirdPartyType';
 export { Town } from './entities/Town';
 export { TypeAdministratorDocument } from './entities/TypeAdministratorDocument';
 export { TypeSchoolDocument } from './entities/TypeSchoolDocument';
+export { UserLog } from './entities/UserLog';
 export { User } from './entities/User';
 export { Voucher } from './entities/Voucher';

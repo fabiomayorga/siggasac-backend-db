@@ -28,4 +28,5 @@ export { Town } from './entities/Town';
 export { TypeAdministratorDocument } from './entities/TypeAdministratorDocument';
 export { TypeSchoolDocument } from './entities/TypeSchoolDocument';
 export { User } from './entities/User';
+export { UserLog } from './entities/UserLog';
 export { Voucher } from './entities/Voucher';
