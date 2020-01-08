@@ -38,7 +38,7 @@ export class Subconcept {
         type => Concept,
         concept => concept.subconcepts
     )
-    @JoinColumn({ name: 'suconcept_id', referencedColumnName: 'id' })
+    @JoinColumn({ name: 'concept_id', referencedColumnName: 'id' })
     public concept!: Concept;
 
     @OneToMany(
