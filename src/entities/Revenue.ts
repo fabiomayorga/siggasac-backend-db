@@ -3,10 +3,12 @@ import {
     Column,
     JoinColumn,
     ManyToOne,
-    PrimaryGeneratedColumn
+    PrimaryGeneratedColumn,
+    OneToMany
 } from 'typeorm';
 
 import { RevenueType } from './RevenueType';
+import { BudgetNotesDetail } from './BudgetNotesDetail';
 
 @Entity({ name: 'revenues' })
 export class Revenue {
@@ -36,4 +38,10 @@ export class Revenue {
     )
     @JoinColumn({ name: 'classification', referencedColumnName: 'id' })
     public revenueType!: RevenueType;
+
+    @OneToMany(
+        type => BudgetNotesDetail,
+        budgetNotesDetail => budgetNotesDetail.revenue
+    )
+    public budgetNotesDetail!: BudgetNotesDetail[];
 }

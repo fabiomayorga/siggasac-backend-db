@@ -99,7 +99,10 @@ export class User {
     )
     public schoolProfileUser!: SchoolProfileUser[];
 
-    @OneToOne(type => UserLog, userLog => userLog.user)
+    @OneToOne(
+        type => UserLog,
+        userLog => userLog.user
+    )
     public userLog!: UserLog;
 
     // comentar para generar migracion

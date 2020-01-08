@@ -11,6 +11,7 @@ import {
 
 import { School } from './School';
 import { TypeSchoolDocument } from './TypeSchoolDocument';
+import { BudgetNotesDetail } from './BudgetNotesDetail';
 
 @Entity({ name: 'campus' })
 export class Campus {
@@ -60,4 +61,10 @@ export class Campus {
         typeSchoolDocument => typeSchoolDocument.campus
     )
     typeSchoolDocuments!: TypeSchoolDocument[];
+
+    @OneToMany(
+        type => BudgetNotesDetail,
+        budgetNotesDetail => budgetNotesDetail.campus
+    )
+    public budgetNotesDetail!: BudgetNotesDetail[];
 }

@@ -72,7 +72,7 @@ export class TypeSchoolDocument {
     )
     @JoinColumn({ name: 'utility_center', referencedColumnName: 'id' })
     campus!: Campus;
-    
+
     @ManyToOne(
         type => TypeAdministratorDocument,
         typeAdministratorDocument =>

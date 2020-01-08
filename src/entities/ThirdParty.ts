@@ -14,6 +14,7 @@ import { ThirdPartyType } from './ThirdPartyType';
 import { PeopleType } from './PeopleType';
 import { School } from './School';
 import { ThirdPartyAccounts } from './ThirdPartyAccounts';
+import { BudgetNote } from './BudgetNote';
 
 @Entity({ name: 'third_parties' })
 export class ThirdParty {
@@ -183,4 +184,10 @@ export class ThirdParty {
         thirdPartyAccounts => thirdPartyAccounts.thirdParty
     )
     public thirdPartyAccounts!: ThirdPartyAccounts[];
+
+    @OneToMany(
+        type => BudgetNote,
+        budgetNote => budgetNote.thirdParty
+    )
+    public budgetNotes!: BudgetNote[];
 }

@@ -3,8 +3,10 @@ import {
     Column,
     CreateDateColumn,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    OneToMany
 } from 'typeorm';
+import { BudgetNotesDetail } from './BudgetNotesDetail';
 
 @Entity({ name: 'budget_accounts' })
 export class BudgetAccount {
@@ -37,4 +39,11 @@ export class BudgetAccount {
         select: false
     })
     updatedAt: Date;
+
+    // relationships
+    @OneToMany(
+        type => BudgetNotesDetail,
+        budgetNotesDetail => budgetNotesDetail.budgetAccount
+    )
+    public budgetNotesDetail!: BudgetNotesDetail[];
 }

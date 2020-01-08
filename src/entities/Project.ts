@@ -5,9 +5,11 @@ import {
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    OneToMany
 } from 'typeorm';
 import { School } from './School';
+import { BudgetNotesDetail } from './BudgetNotesDetail';
 
 @Entity({ name: 'projects' })
 export class Project {
@@ -51,4 +53,10 @@ export class Project {
     )
     @JoinColumn({ name: 'school_id', referencedColumnName: 'id' })
     school!: School;
+
+    @OneToMany(
+        type => BudgetNotesDetail,
+        budgetNotesDetail => budgetNotesDetail.project
+    )
+    public budgetNotesDetail!: BudgetNotesDetail[];
 }
