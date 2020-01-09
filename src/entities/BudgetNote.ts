@@ -1,15 +1,19 @@
 import {
     Entity,
     Column,
-    PrimaryGeneratedColumn,
-    OneToMany,
+    CreateDateColumn,
     JoinColumn,
-    ManyToOne
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
 } from 'typeorm';
+
+import { BudgetNotesDetail } from './BudgetNotesDetail';
 import { Concept } from './Concept';
+import { School } from './School';
 import { Subconcept } from './Subconcept';
 import { ThirdParty } from './ThirdParty';
-import { BudgetNotesDetail } from './BudgetNotesDetail';
 
 @Entity({ name: 'budget_notes' })
 export class BudgetNote {
@@ -32,6 +36,14 @@ export class BudgetNote {
         type: 'date'
     })
     noteDate: Date;
+
+    @Column({
+        name: 'school_id',
+        type: 'integer',
+        width: 11,
+        unsigned: true
+    })
+    schoolId: number;
 
     @Column({
         name: 'concept_id',
@@ -59,7 +71,28 @@ export class BudgetNote {
     })
     thirdPartyId: number;
 
+    @CreateDateColumn({
+        name: 'created_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    createdAt: Date;
+
+    @UpdateDateColumn({
+        name: 'updated_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    updatedAt: Date;
+
     // relationships
+    @ManyToOne(
+        type => School,
+        school => school.budgetNotes
+    )
+    @JoinColumn({ name: 'school_id', referencedColumnName: 'id' })
+    public school!: School;
+
     @ManyToOne(
         type => Concept,
         concept => concept.budgetNotes

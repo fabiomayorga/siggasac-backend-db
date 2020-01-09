@@ -1,15 +1,18 @@
 import {
     Entity,
+    Column,
+    CreateDateColumn,
     JoinColumn,
     ManyToOne,
-    Column,
-    PrimaryGeneratedColumn
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
 } from 'typeorm';
+
+import { Campus } from './Campus';
 import { BudgetNote } from './BudgetNote';
 import { BudgetAccount } from './BudgetAccount';
-import { Campus } from './Campus';
-import { Revenue } from './Revenue';
 import { Project } from './Project';
+import { Revenue } from './Revenue';
 
 @Entity()
 export class BudgetNotesDetail {
@@ -70,6 +73,20 @@ export class BudgetNotesDetail {
         nullable: true
     })
     projectId: number;
+
+    @CreateDateColumn({
+        name: 'created_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    createdAt: Date;
+
+    @UpdateDateColumn({
+        name: 'updated_at',
+        type: 'timestamp without time zone',
+        select: false
+    })
+    updatedAt: Date;
 
     // relationships
     @ManyToOne(

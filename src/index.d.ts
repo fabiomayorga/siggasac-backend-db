@@ -4,6 +4,7 @@ export { AccountType } from './entities/AccountType';
 export { Bank } from './entities/Bank';
 export { BudgetAccount } from './entities/BudgetAccount';
 export { BudgetNote } from './entities/BudgetNote';
+export { BudgetNotesDetail } from './entities/BudgetNotesDetail';
 export { Budget } from './entities/Budget';
 export { Campus } from './entities/Campus';
 export { Concept } from './entities/Concept';

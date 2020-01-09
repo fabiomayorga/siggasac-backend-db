@@ -20,6 +20,7 @@ import { SchoolProfileUser } from './SchoolProfileUser';
 import { User } from './User';
 import { Voucher } from './Voucher';
 import { MenuPermissionProfile } from './MenuPermissionProfile';
+import { BudgetNote } from './BudgetNote';
 
 @Entity({ name: 'schools' })
 export class School {
@@ -139,6 +140,12 @@ export class School {
         menuPermissionProfile => menuPermissionProfile.menu
     )
     public menuPermissionProfile!: MenuPermissionProfile[];
+
+    @OneToMany(
+        type => BudgetNote,
+        budgetNote => budgetNote.school
+    )
+    public budgetNotes!: BudgetNote[];
 
     // comentar para generar migracion
     @ManyToMany(
