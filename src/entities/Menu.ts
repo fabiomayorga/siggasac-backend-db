@@ -33,6 +33,9 @@ export class Menu {
     @Column({ name: 'father', type: 'integer', width: 10, nullable: true })
     father: number;
 
+    @Column({ name: 'is_father', type: 'smallint', default: 0 })
+    isFather: number;
+
     @Column({ name: 'state', type: 'smallint', default: 1 })
     state: number;
 
