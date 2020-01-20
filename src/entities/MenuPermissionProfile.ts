@@ -1,11 +1,10 @@
 import {
     Column,
-    CreateDateColumn,
     Entity,
+    Index,
     JoinColumn,
     ManyToOne,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn
+    PrimaryColumn
 } from 'typeorm';
 
 import { Menu } from './Menu';
@@ -13,15 +12,9 @@ import { Permission } from './Permission';
 import { Profile } from './Profile';
 
 @Entity({ name: 'menu_permission_profile' })
+@Index(['profileId', 'menuId', 'permissionId'], { unique: true })
 export class MenuPermissionProfile {
-    @PrimaryGeneratedColumn('increment', {
-        name: 'id',
-        type: 'integer',
-        unsigned: true
-    })
-    id: number;
-
-    @Column({
+    @PrimaryColumn({
         name: 'profile_id',
         type: 'integer',
         width: 11,
@@ -29,7 +22,7 @@ export class MenuPermissionProfile {
     })
     profileId!: number;
 
-    @Column({
+    @PrimaryColumn({
         name: 'menu_id',
         type: 'integer',
         width: 11,
@@ -37,30 +30,13 @@ export class MenuPermissionProfile {
     })
     menuId!: number;
 
-    @Column({
+    @PrimaryColumn({
         name: 'permission_id',
         type: 'integer',
         width: 11,
         unsigned: true
     })
     permissionId!: number;
-
-    @Column({ name: 'state', type: 'smallint', default: 1 })
-    state: number;
-
-    @CreateDateColumn({
-        name: 'created_at',
-        type: 'timestamp without time zone',
-        select: false
-    })
-    createdAt: Date;
-
-    @UpdateDateColumn({
-        name: 'updated_at',
-        type: 'timestamp without time zone',
-        select: false
-    })
-    updatedAt: Date;
 
     // relationships
     @ManyToOne(
