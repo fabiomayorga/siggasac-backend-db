@@ -12,8 +12,8 @@ export class UserLog {
     })
     userId: number;
 
-    @Column({ name: 'last_login', type: 'timestamp' })
-    lastLogin: string;
+    @Column({ name: 'last_login', type: 'timestamp without time zone' })
+    lastLogin: Date;
 
     @Column({ name: 'from', type: 'varchar' })
     from: string;
@@ -26,12 +26,12 @@ export class UserLog {
     })
     updatedPassword: number;
 
-    @Column({ name: 'password_update_date', type: 'date', nullable: true })
+    @Column({ name: 'password_update_date', type: 'timestamp without time zone', nullable: true })
     passwordUpdateDate: Date;
 
     @Column({
         name: 'updated_password_expiration_date',
-        type: 'date',
+        type: 'timestamp without time zone',
         nullable: true
     })
     updatedPasswordExpirationDate: Date;
