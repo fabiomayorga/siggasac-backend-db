@@ -12,8 +12,11 @@ export class UserLog {
     })
     userId: number;
 
-    @Column({ name: 'last_login', type: 'date' })
-    lastLogin: Date;
+    @Column({ name: 'last_login', type: 'timestamp' })
+    lastLogin: string;
+
+    @Column({ name: 'from', type: 'varchar' })
+    from: string;
 
     @Column({
         name: 'updated_password',
