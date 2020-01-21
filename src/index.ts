@@ -9,6 +9,7 @@ export { Budget } from './entities/Budget';
 export { Campus } from './entities/Campus';
 export { Concept } from './entities/Concept';
 export { Country } from './entities/Country';
+export { DBEntity } from './entities/DBEntity';
 export { Department } from './entities/Department';
 export { DocumentType } from './entities/DocumentType';
 export { Menu } from './entities/Menu';
