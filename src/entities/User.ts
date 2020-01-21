@@ -106,25 +106,25 @@ export class User {
     public userLog!: UserLog;
 
     // comentar para generar migracion
-    // @ManyToMany(
-    //     type => School,
-    //     school => school.users
-    // )
-    // @JoinTable({
-    //     name: 'school_profile_user',
-    //     joinColumn: { referencedColumnName: 'id', name: 'user_id' },
-    //     inverseJoinColumn: { referencedColumnName: 'id', name: 'school_id' }
-    // })
-    // schools!: School[];
+    @ManyToMany(
+        type => School,
+        school => school.users
+    )
+    @JoinTable({
+        name: 'school_profile_user',
+        joinColumn: { referencedColumnName: 'id', name: 'user_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'school_id' }
+    })
+    schools!: School[];
 
-    // @ManyToMany(
-    //     type => Profile,
-    //     profile => profile.users
-    // )
-    // @JoinTable({
-    //     name: 'school_profile_user',
-    //     joinColumn: { referencedColumnName: 'id', name: 'user_id' },
-    //     inverseJoinColumn: { referencedColumnName: 'id', name: 'profile_id' }
-    // })
-    // profiles!: Profile[];
+    @ManyToMany(
+        type => Profile,
+        profile => profile.users
+    )
+    @JoinTable({
+        name: 'school_profile_user',
+        joinColumn: { referencedColumnName: 'id', name: 'user_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'profile_id' }
+    })
+    profiles!: Profile[];
 }

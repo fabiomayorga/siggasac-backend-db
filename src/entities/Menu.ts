@@ -75,25 +75,25 @@ export class Menu {
     submenu!: Menu;
 
     // comentar para generar migracion
-    // @ManyToMany(
-    //     type => Permission,
-    //     permissions => permissions.menus
-    // )
-    // @JoinTable({
-    //     name: 'menu_permission_profile',
-    //     joinColumn: { referencedColumnName: 'id', name: 'menu_id' },
-    //     inverseJoinColumn: { referencedColumnName: 'id', name: 'permission_id' }
-    // })
-    // permissions!: Permission[];
+    @ManyToMany(
+        type => Permission,
+        permissions => permissions.menus
+    )
+    @JoinTable({
+        name: 'menu_permission_profile',
+        joinColumn: { referencedColumnName: 'id', name: 'menu_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'permission_id' }
+    })
+    permissions!: Permission[];
 
-    // @ManyToMany(
-    //     type => Profile,
-    //     profile => profile.menus
-    // )
-    // @JoinTable({
-    //     name: 'menu_permission_profile',
-    //     joinColumn: { referencedColumnName: 'id', name: 'menu_id' },
-    //     inverseJoinColumn: { referencedColumnName: 'id', name: 'profile_id' }
-    // })
-    // profiles!: Profile[];
+    @ManyToMany(
+        type => Profile,
+        profile => profile.menus
+    )
+    @JoinTable({
+        name: 'menu_permission_profile',
+        joinColumn: { referencedColumnName: 'id', name: 'menu_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'profile_id' }
+    })
+    profiles!: Profile[];
 }

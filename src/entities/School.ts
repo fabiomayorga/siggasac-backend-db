@@ -148,14 +148,14 @@ export class School {
     public budgetNotes!: BudgetNote[];
 
     // comentar para generar migracion
-    // @ManyToMany(
-    //     type => User,
-    //     school => school.schools
-    // )
-    // @JoinTable({
-    //     name: 'school_profile_user',
-    //     joinColumn: { referencedColumnName: 'id', name: 'school_id' },
-    //     inverseJoinColumn: { referencedColumnName: 'id', name: 'user_id' }
-    // })
-    // users!: User[];
+    @ManyToMany(
+        type => User,
+        school => school.schools
+    )
+    @JoinTable({
+        name: 'school_profile_user',
+        joinColumn: { referencedColumnName: 'id', name: 'school_id' },
+        inverseJoinColumn: { referencedColumnName: 'id', name: 'user_id' }
+    })
+    users!: User[];
 }
