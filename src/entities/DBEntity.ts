@@ -18,6 +18,9 @@ export class DBEntity {
     @Column({ name: 'entity_name', type: 'varchar' })
     entityName: string;
 
+    @Column({ name: 'name', type: 'varchar', nullable: true })
+    name: string;
+
     @Column({ name: 'state', type: 'smallint', width: 1, default: 1 })
     state: number;
 
