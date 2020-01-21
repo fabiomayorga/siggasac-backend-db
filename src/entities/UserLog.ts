@@ -26,7 +26,11 @@ export class UserLog {
     })
     updatedPassword: number;
 
-    @Column({ name: 'password_update_date', type: 'timestamp without time zone', nullable: true })
+    @Column({
+        name: 'password_update_date',
+        type: 'timestamp without time zone',
+        nullable: true
+    })
     passwordUpdateDate: Date;
 
     @Column({
