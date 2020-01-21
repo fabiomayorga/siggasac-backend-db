@@ -36,14 +36,14 @@ export class Permission {
     public menuPermissionProfile!: MenuPermissionProfile[];
 
     // comentar para generar migracion
-    @ManyToMany(
-        type => Menu,
-        menu => menu.permissions
-    )
-    @JoinTable({
-        name: 'menu_permission_profile',
-        joinColumn: { referencedColumnName: 'id', name: 'permission_id' },
-        inverseJoinColumn: { referencedColumnName: 'id', name: 'menu_id' }
-    })
-    menus!: Menu[];
+    // @ManyToMany(
+    //     type => Menu,
+    //     menu => menu.permissions
+    // )
+    // @JoinTable({
+    //     name: 'menu_permission_profile',
+    //     joinColumn: { referencedColumnName: 'id', name: 'permission_id' },
+    //     inverseJoinColumn: { referencedColumnName: 'id', name: 'menu_id' }
+    // })
+    // menus!: Menu[];
 }
