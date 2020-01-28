@@ -21,6 +21,7 @@ import { User } from './User';
 import { Voucher } from './Voucher';
 import { MenuPermissionProfile } from './MenuPermissionProfile';
 import { BudgetNote } from './BudgetNote';
+import { Month } from './Month';
 
 @Entity({ name: 'schools' })
 export class School {
@@ -146,6 +147,12 @@ export class School {
         budgetNote => budgetNote.school
     )
     public budgetNotes!: BudgetNote[];
+
+    @OneToMany(
+        type => Month,
+        month => month.school
+    )
+    public months!: Month[];
 
     // comentar para generar migracion
     @ManyToMany(
