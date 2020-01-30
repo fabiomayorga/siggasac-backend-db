@@ -21,7 +21,7 @@ export class Month {
     @Column({ name: 'start_date', type: 'date' })
     startDate: Date;
 
-    @Column({ name: 'finish_date', type: 'date' })
+    @Column({ name: 'finish_date', type: 'date', nullable: true })
     finishDate: Date;
 
     @Column({ name: 'closed_by', type: 'integer', width: 10, nullable: true })
@@ -30,7 +30,7 @@ export class Month {
     @Column({ name: 'school_id', type: 'integer', width: 10 })
     schoolId: number;
 
-    @Column({ name: 'state_id', type: 'integer', width: 10 })
+    @Column({ name: 'state_id', type: 'integer', width: 10, default: 1 })
     stateId: number;
 
     // relationships
