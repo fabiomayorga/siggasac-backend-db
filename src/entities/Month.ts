@@ -3,9 +3,11 @@ import {
     Column,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn
 } from 'typeorm';
 
+import { ModificationRequest } from './ModificationRequest';
 import { School } from './School';
 import { State } from './State';
 
@@ -34,6 +36,13 @@ export class Month {
     stateId: number;
 
     // relationships
+    @OneToMany(
+        type => ModificationRequest,
+        modificationRequest => modificationRequest.month,
+        { nullable: true }
+    )
+    public modificationRequest!: ModificationRequest[];
+
     @ManyToOne(
         type => School,
         school => school.months
