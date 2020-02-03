@@ -1,22 +1,23 @@
 import {
-    Column,
-    CreateDateColumn,
     BeforeInsert,
     BeforeUpdate,
+    Column,
+    CreateDateColumn,
     Entity,
     JoinColumn,
-    ManyToOne,
-    UpdateDateColumn,
-    PrimaryGeneratedColumn,
-    OneToMany,
-    ManyToMany,
     JoinTable,
-    OneToOne
+    ManyToOne,
+    ManyToMany,
+    OneToMany,
+    OneToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 
 import { compareSync, genSaltSync, hashSync } from 'bcrypt';
 
 import { DocumentType } from './DocumentType';
+import { ModificationRequest } from './ModificationRequest';
 import { Profile } from './Profile';
 import { School } from './School';
 import { SchoolProfileUser } from './SchoolProfileUser';
@@ -98,6 +99,18 @@ export class User {
         schoolProfileUser => schoolProfileUser.user
     )
     public schoolProfileUser!: SchoolProfileUser[];
+
+    @OneToMany(
+        type => ModificationRequest,
+        modificationRequest => modificationRequest.applicant
+    )
+    public modificationRequestApplicant!: ModificationRequest[];
+
+    @OneToMany(
+        type => ModificationRequest,
+        modificationRequest => modificationRequest.approves
+    )
+    public modificationRequestApproves!: ModificationRequest[];
 
     @OneToOne(
         type => UserLog,
