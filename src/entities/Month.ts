@@ -10,6 +10,7 @@ import {
 import { ModificationRequest } from './ModificationRequest';
 import { School } from './School';
 import { State } from './State';
+import { User } from './User';
 
 @Entity({ name: 'months' })
 export class Month {
@@ -56,4 +57,11 @@ export class Month {
     )
     @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
     public state!: State;
+
+    @ManyToOne(
+        type => User,
+        user => user.months
+    )
+    @JoinColumn({ name: 'closed_by', referencedColumnName: 'id' })
+    public user!: State;
 }

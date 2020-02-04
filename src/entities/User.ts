@@ -18,6 +18,7 @@ import { compareSync, genSaltSync, hashSync } from 'bcrypt';
 
 import { DocumentType } from './DocumentType';
 import { ModificationRequest } from './ModificationRequest';
+import { Month } from './Month';
 import { Profile } from './Profile';
 import { School } from './School';
 import { SchoolProfileUser } from './SchoolProfileUser';
@@ -111,6 +112,12 @@ export class User {
         modificationRequest => modificationRequest.approves
     )
     public modificationRequestApproves!: ModificationRequest[];
+
+    @OneToMany(
+        type => Month,
+        month => month.user
+    )
+    public months!: Month[];
 
     @OneToOne(
         type => UserLog,
