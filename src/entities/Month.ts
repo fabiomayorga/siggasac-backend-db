@@ -11,6 +11,7 @@ import { ModificationRequest } from './ModificationRequest';
 import { School } from './School';
 import { State } from './State';
 import { User } from './User';
+import { BudgetNote } from './BudgetNote';
 
 @Entity({ name: 'months' })
 export class Month {
@@ -43,6 +44,12 @@ export class Month {
         { nullable: true }
     )
     public modificationRequest!: ModificationRequest[];
+
+    @OneToMany(
+        type => BudgetNote,
+        budgetNote => budgetNote.month
+    )
+    public budgetNotes!: BudgetNote[];
 
     @ManyToOne(
         type => School,

@@ -14,6 +14,7 @@ import { Concept } from './Concept';
 import { School } from './School';
 import { Subconcept } from './Subconcept';
 import { ThirdParty } from './ThirdParty';
+import { Month } from './Month';
 
 @Entity({ name: 'budget_notes' })
 export class BudgetNote {
@@ -36,6 +37,14 @@ export class BudgetNote {
         type: 'date'
     })
     noteDate: Date;
+
+    @Column({
+        name: 'month_id',
+        type: 'integer',
+        width: 11,
+        unsigned: true
+    })
+    monthId: number;
 
     @Column({
         name: 'school_id',
@@ -86,6 +95,13 @@ export class BudgetNote {
     updatedAt: Date;
 
     // relationships
+    @ManyToOne(
+        type => Month,
+        month => month.budgetNotes
+    )
+    @JoinColumn({ name: 'month_id', referencedColumnName: 'id' })
+    public month!: Month;
+
     @ManyToOne(
         type => School,
         school => school.budgetNotes
