@@ -7,6 +7,7 @@ import {
     OneToMany
 } from 'typeorm';
 import { SchoolBankAccount } from './SchoolBankAccount';
+import { BudgetNotesDetail } from './BudgetNotesDetail';
 
 @Entity({ name: 'single_account_plan' })
 export class SingleAccountPlan {
@@ -46,4 +47,10 @@ export class SingleAccountPlan {
         schoolBankAccount => schoolBankAccount.singleAccountPlan
     )
     public schoolBankAccounts!: SchoolBankAccount[];
+
+    @OneToMany(
+        type => BudgetNotesDetail,
+        budgetNotesDetail => budgetNotesDetail.singleAccountPlan
+    )
+    public budgetNotesDetail!: BudgetNotesDetail[];
 }
