@@ -13,7 +13,6 @@ import { BudgetNotesDetail } from './BudgetNotesDetail';
 import { Concept } from './Concept';
 import { School } from './School';
 import { Subconcept } from './Subconcept';
-import { ThirdParty } from './ThirdParty';
 import { Month } from './Month';
 
 @Entity({ name: 'budget_notes' })
@@ -37,6 +36,9 @@ export class BudgetNote {
         type: 'date'
     })
     noteDate: Date;
+
+    @Column({ name: 'state', type: 'smallint', default: 1 })
+    state: number;
 
     @Column({
         name: 'month_id',
@@ -70,15 +72,6 @@ export class BudgetNote {
         nullable: true
     })
     subconceptId: number;
-
-    @Column({
-        name: 'third_party_id',
-        type: 'integer',
-        width: 11,
-        unsigned: true,
-        nullable: true
-    })
-    thirdPartyId: number;
 
     @CreateDateColumn({
         name: 'created_at',
@@ -123,14 +116,6 @@ export class BudgetNote {
     )
     @JoinColumn({ name: 'subconcept_id', referencedColumnName: 'id' })
     public subconcept!: Subconcept;
-
-    @ManyToOne(
-        type => ThirdParty,
-        thirdParty => thirdParty.budgetNotes,
-        { nullable: true }
-    )
-    @JoinColumn({ name: 'third_party_id', referencedColumnName: 'id' })
-    public thirdParty!: ThirdParty;
 
     @OneToMany(
         type => BudgetNotesDetail,
