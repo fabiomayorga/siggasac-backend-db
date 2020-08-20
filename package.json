@@ -16,7 +16,7 @@
         "start": "tsc && node dist/test.js"
     },
     "dependencies": {
-        "bcrypt": "^3.0.6",
+        "bcrypt": "^5.0.0",
         "pg": "^7.14.0",
         "reflect-metadata": "^0.1.10",
         "typeorm": "0.2.18"
